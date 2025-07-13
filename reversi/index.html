@@ -1,0 +1,64 @@
+<!-- HTML5の文書型宣言 - 最新のHTML標準を使用することを宣言 -->
+<!DOCTYPE html>
+
+<!-- html要素: HTMLドキュメントのルート要素 -->
+<!-- lang属性: 文書の言語を指定（日本語 = "ja"） - 検索エンジンやスクリーンリーダーが言語を認識 -->
+<html lang="ja">
+
+<!-- head要素: ページのメタデータ（ブラウザに表示されない情報）を含む -->
+<head>
+    <!-- 文字エンコーディングの指定 - UTF-8は多言語対応の標準的な文字コード -->
+    <meta charset="UTF-8">
+    
+    <!-- レスポンシブデザインのためのビューポート設定 -->
+    <!-- width=device-width: 画面幅をデバイスの幅に合わせる -->
+    <!-- initial-scale=1.0: 初期ズーム倍率を1.0（100%）に設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ページタイトル - ブラウザのタブに表示される -->
+    <title>リバーシ</title>
+    
+    <!-- 外部CSSファイルの読み込み -->
+    <!-- rel="stylesheet": スタイルシートであることを指定 -->
+    <!-- href: CSSファイルのパスを指定 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- body要素: ブラウザに実際に表示されるコンテンツを含む -->
+<body>
+    <!-- h1要素: 最上位の見出し（ページのメインタイトル） -->
+    <h1>リバーシ</h1>
+    
+    <!-- ===== ゲーム状況表示エリア ===== -->
+    <!-- div要素: ブロックレベルの汎用コンテナ -->
+    <!-- class属性: CSSでスタイルを指定するためのクラス名 -->
+    <div class="status-container">
+        
+        <!-- 黒石のスコア表示部分 -->
+        <div class="score">
+            <!-- 黒石の見た目を表示（CSSで円形の黒い石として描画） -->
+            <div class="stone black"></div>
+            <!-- span要素: インライン要素の汎用コンテナ -->
+            <!-- id属性: JavaScriptで要素を特定するための一意な識別子 -->
+            <span id="black-score">2</span>
+        </div>
+        
+        <!-- 現在の手番表示 -->
+        <!-- JavaScriptで動的に内容が変更される -->
+        <div id="turn">手番: 黒</div>
+        
+        <!-- 白石のスコア表示部分 -->
+        <div class="score">
+            <!-- 白石の見た目を表示（CSSで円形の白い石として描画） -->
+            <div class="stone white"></div>
+            <!-- 白石の数を表示（JavaScriptで動的に更新） -->
+            <span id="white-score">2</span>
+        </div>
+    </div>
+    <div id="board-container">
+        <div id="board"></div>
+    </div>
+    <button id="reset-button">新しいゲーム</button>
+
+    <script src="index.js"></script>
+</body>
+</html>

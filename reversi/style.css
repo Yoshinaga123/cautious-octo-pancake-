@@ -1,0 +1,130 @@
+/* ===== 全体のレイアウトとベーススタイル ===== */
+
+/* body要素のスタイル設定 */
+/* Webページ全体の基本的な見た目を決定する最重要な設定 */
+body {
+    font-family: sans-serif;        /* フォントファミリー: ゴシック体系のフォントを指定 */
+    display: flex;                  /* Flexboxレイアウトを使用 - 要素を柔軟に配置可能 */
+    flex-direction: column;         /* 子要素を縦方向（上から下）に配置 */
+    align-items: center;            /* 子要素を水平方向の中央に配置 */
+    justify-content: center;        /* 子要素を垂直方向の中央に配置 */
+    background-color: #f0f0f0;      /* 背景色: 薄いグレー（16進数カラーコード） */
+    color: #333;                    /* 文字色: 濃いグレー */
+}
+
+/* メインタイトルのスタイル */
+h1 {
+    color: #4CAF50;                 /* 文字色: 緑色（Material Design風） */
+}
+
+/* ===== ゲーム状況表示エリアのスタイル ===== */
+
+/* ゲーム状況を表示するコンテナ（手番・スコア表示部分） */
+.status-container {
+    display: flex;                  /* Flexboxレイアウト: 子要素を横並びに配置 */
+    justify-content: space-between; /* 子要素を両端に配置し、間隔を均等に空ける */
+    align-items: center;            /* 子要素を垂直方向の中央に揃える */
+    width: 360px;                   /* 幅を固定: 盤面の幅に合わせる */
+    margin-bottom: 20px;            /* 下側の余白: 20px */
+    font-size: 1.2em;               /* フォントサイズ: 基準サイズの1.2倍 */
+}
+
+/* スコア表示部分のスタイル */
+.score {
+    display: flex;                  /* Flexboxレイアウト: 石の画像と数字を横並びに */
+    align-items: center;            /* 石と数字を垂直方向の中央に揃える */
+    gap: 8px;                       /* 子要素間の間隔: 8px */
+}
+
+/* 手番表示のスタイル */
+#turn {
+    font-weight: bold;              /* フォントの太さ: 太字にして強調 */
+}
+
+/* ===== オセロ盤のスタイル ===== */
+
+/* 盤面全体を囲むコンテナ */
+#board-container {
+    padding: 10px;                  /* 内側の余白: 10px（盤面と枠の間隔） */
+    background-color: #008000;      /* 背景色: 緑色（オセロ盤の伝統的な色） */
+    border-radius: 8px;             /* 角の丸み: 8px（現代的な見た目） */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 影効果: 立体的な見た目を演出 */
+    /* box-shadowの値: 水平オフセット 垂直オフセット ぼかし半径 色（透明度20%の黒） */
+}
+
+/* オセロ盤本体のグリッドレイアウト */
+#board {
+    display: grid;                          /* CSS Grid: 格子状のレイアウトシステム */
+    grid-template-columns: repeat(8, 45px); /* 列の設定: 45px幅の列を8個作成 */
+    grid-template-rows: repeat(8, 45px);    /* 行の設定: 45px高さの行を8個作成 */
+    gap: 2px;                               /* グリッド項目間の間隔: 2px */
+    /* 結果: 8×8のマス目が生成される */
+}
+
+/* ===== 個別のマス目のスタイル ===== */
+
+/* 各マス目（セル）のスタイル設定 */
+.cell {
+    width: 45px;                    /* マス目の幅: 45px */
+    height: 45px;                   /* マス目の高さ: 45px（正方形になる） */
+    background-color: #2E8B57;      /* 背景色: 濃い緑（SeaGreen色） */
+    display: flex;                  /* Flexboxレイアウト: 中央配置のため */
+    justify-content: center;        /* 子要素（石）を水平方向の中央に配置 */
+    align-items: center;            /* 子要素（石）を垂直方向の中央に配置 */
+    cursor: pointer;                /* マウスカーソル: ポインター（クリック可能であることを示す） */
+}
+
+/* ===== 石（駒）のスタイル ===== */
+
+/* 石の基本スタイル（黒石・白石共通の設定） */
+.stone {
+    width: 85%;                     /* 幅: マス目の85%（マス目より少し小さく） */
+    height: 85%;                    /* 高さ: マス目の85%（正円になる） */
+    border-radius: 50%;             /* 角の丸み: 50%（完全な円形になる） */
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* 影効果: 立体感を演出 */
+    /* box-shadowの値: 右に1px下に1px、3pxのぼかし、50%透明度の黒 */
+}
+
+/* 黒石専用のスタイル */
+.black {
+    background-color: #111;         /* 背景色: ほぼ黒色 */
+}
+
+/* 白石専用のスタイル */
+.white {
+    background-color: #f8f8f8;      /* 背景色: ほぼ白色（純白より少し柔らかい） */
+}
+
+/* ===== 石を置ける場所の目印 ===== */
+
+/* 合法手（石を置ける場所）を示すマーカーのスタイル */
+.move-marker {
+    width: 30%;                               /* 幅: マス目の30%（小さな円） */
+    height: 30%;                              /* 高さ: マス目の30%（正円になる） */
+    background-color: rgba(255, 255, 255, 0.3); /* 背景色: 30%透明度の白色（薄く表示） */
+    border-radius: 50%;                       /* 角の丸み: 50%（完全な円形） */
+    /* このマーカーにより、プレイヤーは石を置ける場所を視覚的に確認できる */
+}
+
+/* ===== リセットボタンのスタイル ===== */
+
+/* ゲームリセットボタンの基本スタイル */
+#reset-button {
+    margin-top: 20px;               /* 上側の余白: 20px（盤面との間隔） */
+    padding: 10px 20px;             /* 内側の余白: 上下10px、左右20px */
+    font-size: 1em;                 /* フォントサイズ: 基準サイズと同じ */
+    border: none;                   /* 境界線: なし（デフォルトのボタン枠を削除） */
+    border-radius: 5px;             /* 角の丸み: 5px（現代的な見た目） */
+    background-color: #4CAF50;      /* 背景色: 緑色（メインカラーと統一） */
+    color: white;                   /* 文字色: 白色（背景色とのコントラスト） */
+    cursor: pointer;                /* マウスカーソル: ポインター（クリック可能を示す） */
+    transition: background-color 0.3s; /* トランジション効果: 背景色変化を0.3秒でアニメーション */
+}
+
+/* ボタンのホバー効果（マウスが乗った時の状態） */
+#reset-button:hover {
+    background-color: #45a049;      /* ホバー時の背景色: 少し暗い緑色 */
+    /* ユーザーにインタラクティブな反応を提供し、UX（ユーザー体験）を向上させる */
+}
+
+
